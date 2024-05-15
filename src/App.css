@@ -1,0 +1,33 @@
+#root {
+    margin: 0 auto;
+    background-color: black;
+    min-height: 100vh;
+    /* color: white; */
+    font-family: __Bai_Jamjuree_2b9e37, __Bai_Jamjuree_Fallback_2b9e37;
+    font-style: normal;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    background-image: radial-gradient(
+            circle at top center,
+            #526e9710,
+            transparent
+        ),
+        url(/src/assets/star2.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% auto;
+    background-clip: border-box;
+}
+
+.layout-background-image {
+    background-image: radial-gradient(
+            circle at top center,
+            #526e9710,
+            transparent
+        ),
+        url(/src/assets/diag-ascii.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% auto;
+    background-clip: border-box;
+}
