@@ -4,7 +4,6 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { Icons } from "@/components/icons";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Moon, Sun } from "lucide-react";
@@ -20,6 +19,7 @@ import {
     TwitterLogoIcon,
     GitHubLogoIcon,
     DiscordLogoIcon,
+    DragHandleHorizontalIcon,
 } from "@radix-ui/react-icons";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { useAppSelector, useAppDispatch } from "@/hooks";
@@ -34,6 +34,13 @@ const Header = () => {
     const { setTheme } = useTheme();
     const { client, chain, address } = useAppSelector((state) => state.app);
     const dispatch = useAppDispatch();
+
+    const tabs: string[] = [
+        "Whitepaper",
+        "Airdrop",
+        "Claim $USDM",
+        "Leaderboard",
+    ];
 
     // 查余额
     useEffect(() => {
@@ -51,9 +58,10 @@ const Header = () => {
 
     // 断开链接钱包
     const disconnect = async () => {
-        client.disconnect();
-        await dispatch(setAddress(""));
+        await client.disconnect();
+        dispatch(setAddress(""));
         dispatch(setClient({} as SigningStargateClient));
+        dispatch(setAllBalances([]));
     };
 
     // 连接keplr钱包  Todo
@@ -77,7 +85,24 @@ const Header = () => {
     return (
         <div className="flex items-center justify-between">
             <div className="flex items-center">
-                <Icons.menu className="text-white h-8 w-8 lg:hidden"></Icons.menu>
+                <div className="lg:hidden">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="icon">
+                                <DragHandleHorizontalIcon className="h-6 w-6"></DragHandleHorizontalIcon>
+                                <span className="sr-only">
+                                    Expand Navigation
+                                </span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            {tabs.map((item) => (
+                                <DropdownMenuItem>{item}</DropdownMenuItem>
+                            ))}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+
                 <div className="flex items-center mr-10">
                     <Avatar>
                         <AvatarImage
@@ -86,76 +111,56 @@ const Header = () => {
                         />
                         <AvatarFallback>@terramint</AvatarFallback>
                     </Avatar>
-                    <span className="dark:text-whit font-bold text-3xl">
+                    <span className="dark:text-whit font-bold text-xl lg:text-3xl">
                         TERRA MINT
                     </span>
                 </div>
-                <NavigationMenu>
+                <NavigationMenu className="hidden lg:block">
                     <NavigationMenuList className="text-lg">
-                        <NavigationMenuItem className="cursor-pointer">
-                            <NavigationMenuLink
-                                className={
-                                    navigationMenuTriggerStyle() + " text-lg"
-                                }
-                            >
-                                Whitepaper
-                            </NavigationMenuLink>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem className="cursor-pointer">
-                            <NavigationMenuLink
-                                className={
-                                    navigationMenuTriggerStyle() + " text-lg"
-                                }
-                            >
-                                Airdrop
-                            </NavigationMenuLink>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem className="cursor-pointer">
-                            <NavigationMenuLink
-                                className={
-                                    navigationMenuTriggerStyle() + " text-lg"
-                                }
-                            >
-                                Claim $USDM
-                            </NavigationMenuLink>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem className="cursor-pointer">
-                            <NavigationMenuLink
-                                className={
-                                    navigationMenuTriggerStyle() + " text-lg"
-                                }
-                            >
-                                Leaderboard
-                            </NavigationMenuLink>
-                        </NavigationMenuItem>
+                        {tabs.map((item) => (
+                            <NavigationMenuItem className="cursor-pointer">
+                                <NavigationMenuLink
+                                    className={
+                                        navigationMenuTriggerStyle() +
+                                        " text-lg"
+                                    }
+                                >
+                                    {item}
+                                </NavigationMenuLink>
+                            </NavigationMenuItem>
+                        ))}
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
             <div className="flex items-center">
-                <TwitterLogoIcon className="h-6 w-6 mr-4 cursor-pointer"></TwitterLogoIcon>
-                <GitHubLogoIcon className="h-6 w-6 mr-4 cursor-pointer"></GitHubLogoIcon>
-                <DiscordLogoIcon className="h-6 w-6 mr-4 cursor-pointer"></DiscordLogoIcon>
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="icon">
-                            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                            <span className="sr-only">Toggle theme</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => setTheme("light")}>
-                            Light
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setTheme("dark")}>
-                            Dark
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setTheme("system")}>
-                            System
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-                <p>
+                <div className="lg:flex lg:items-center hidden">
+                    <TwitterLogoIcon className="h-6 w-6 mr-4 cursor-pointer"></TwitterLogoIcon>
+                    <GitHubLogoIcon className="h-6 w-6 mr-4 cursor-pointer"></GitHubLogoIcon>
+                    <DiscordLogoIcon className="h-6 w-6 mr-4 cursor-pointer"></DiscordLogoIcon>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="icon">
+                                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                                <span className="sr-only">Toggle theme</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuItem onClick={() => setTheme("light")}>
+                                Light
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setTheme("dark")}>
+                                Dark
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                                onClick={() => setTheme("system")}
+                            >
+                                System
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+                <p className="ml-4">
                     {address.length > 13
                         ? address.substring(0, 10) +
                           "..." +
