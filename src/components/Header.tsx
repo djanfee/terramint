@@ -27,12 +27,18 @@ import {
     setClient,
     setAddress,
     setAllBalances,
+    setCosmCli,
+    setAllTokenBalances,
 } from "@/store/modules/appStore";
 import { useEffect } from "react";
+import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
+import { balancesTokens } from "@/config/terraClassic";
 
 const Header = () => {
     const { setTheme } = useTheme();
-    const { client, chain, address } = useAppSelector((state) => state.app);
+    const { client, chain, address, cosmCli } = useAppSelector(
+        (state) => state.app
+    );
     const dispatch = useAppDispatch();
 
     const tabs: string[] = [
@@ -41,6 +47,11 @@ const Header = () => {
         "Claim $USDM",
         "Leaderboard",
     ];
+
+    // 初始化 chain
+    useEffect(() => {
+        connectWallet();
+    }, [chain]);
 
     // 查余额
     useEffect(() => {
@@ -51,17 +62,50 @@ const Header = () => {
     // 余额查询  Todo
     const getBalances = async () => {
         if (client.registry) {
-            const _balances = await client.getAllBalances(address);
-            dispatch(setAllBalances(_balances));
+            client
+                .getAllBalances(address)
+                .then((res) => {
+                    dispatch(setAllBalances(res));
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+
+            const tokenBalList = await Promise.all([
+                cosmCli.queryContractSmart(balancesTokens.MINT.address, {
+                    balance: {
+                        address: address,
+                    },
+                }),
+                cosmCli.queryContractSmart(balancesTokens.USDM.address, {
+                    balance: {
+                        address: address,
+                    },
+                }),
+            ]);
+            dispatch(
+                setAllTokenBalances(
+                    tokenBalList.map((val, idx) => {
+                        if (idx == 0) {
+                            return { amount: val.balance, symbol: "MINT" };
+                        }
+                        if (idx == 1) {
+                            return { amount: val.balance, symbol: "USDM" };
+                        }
+                    })
+                )
+            );
         }
     };
 
     // 断开链接钱包
     const disconnect = async () => {
-        await client.disconnect();
+        await Promise.all([client.disconnect(), cosmCli.disconnect()]);
         dispatch(setAddress(""));
         dispatch(setClient({} as SigningStargateClient));
+        dispatch(setCosmCli({} as SigningCosmWasmClient));
         dispatch(setAllBalances([]));
+        dispatch(setAllTokenBalances([]));
     };
 
     // 连接keplr钱包  Todo
@@ -79,6 +123,11 @@ const Header = () => {
             chain.rpc,
             offlineSigner
         );
+        const cosmCli = await SigningCosmWasmClient.connectWithSigner(
+            chain.rpc,
+            offlineSigner
+        );
+        dispatch(setCosmCli(cosmCli));
         dispatch(setAddress(accounts[0].address));
         dispatch(setClient(tmpCli));
     };
@@ -97,7 +146,9 @@ const Header = () => {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             {tabs.map((item) => (
-                                <DropdownMenuItem>{item}</DropdownMenuItem>
+                                <DropdownMenuItem key={item}>
+                                    {item}
+                                </DropdownMenuItem>
                             ))}
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -118,7 +169,10 @@ const Header = () => {
                 <NavigationMenu className="hidden lg:block">
                     <NavigationMenuList className="text-lg">
                         {tabs.map((item) => (
-                            <NavigationMenuItem className="cursor-pointer">
+                            <NavigationMenuItem
+                                className="cursor-pointer"
+                                key={item}
+                            >
                                 <NavigationMenuLink
                                     className={
                                         navigationMenuTriggerStyle() +

@@ -10,9 +10,64 @@ import {
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAppSelector } from "@/hooks";
+import { balancesCoins, balancesTokens } from "@/config/terraClassic";
+import { Coin } from "@cosmjs/stargate";
+
+const renderBalance = (allBalances: Coin[], displayDenom: string) => {
+    const idx = allBalances.findIndex((item) => item.denom === displayDenom);
+    const coin = allBalances[idx];
+    const item = balancesCoins[displayDenom];
+    if (idx != -1) {
+        return (
+            <div
+                className="flex items-center justify-between rounded-md py-4 px-10 mb-6"
+                style={{
+                    boxShadow: "0 0 24px rgb(59,130,246,.5)",
+                }}
+                key={displayDenom}
+            >
+                <div className="flex items-center">
+                    <Avatar>
+                        <AvatarImage src={item.logo} alt="@terramint" />
+                        <AvatarFallback>@terramint</AvatarFallback>
+                    </Avatar>
+                    <span className="ml-4 font-bold">${item.display}</span>
+                </div>
+                <div>
+                    <span className="font-bold">
+                        {(Number(coin.amount) / 6).toFixed(6)}
+                    </span>
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <div
+                className="flex items-center justify-between rounded-md py-4 px-10 mb-6"
+                style={{
+                    boxShadow: "0 0 24px rgb(59,130,246,.5)",
+                }}
+                key={displayDenom}
+            >
+                <div className="flex items-center">
+                    <Avatar>
+                        <AvatarImage src={item.logo} alt="@terramint" />
+                        <AvatarFallback>@terramint</AvatarFallback>
+                    </Avatar>
+                    <span className="ml-4 font-bold">${item.display}</span>
+                </div>
+                <div>
+                    <span className="font-bold">0</span>
+                </div>
+            </div>
+        );
+    }
+};
 
 const Home = () => {
-    const { allBalances } = useAppSelector((state) => state.app);
+    const { allBalances, allTokenBalances } = useAppSelector(
+        (state) => state.app
+    );
     return (
         <div className="relative p-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
             <Header></Header>
@@ -49,14 +104,17 @@ const Home = () => {
                         </CardHeader>
                         <CardContent>
                             <div>
-                                {allBalances.map((item) => (
+                                {Object.keys(balancesCoins).map((key) =>
+                                    renderBalance(allBalances, key)
+                                )}
+                                {Object.keys(balancesTokens).map((key, idx) => (
                                     <div
                                         className="flex items-center justify-between rounded-md py-4 px-10 mb-6"
                                         style={{
                                             boxShadow:
                                                 "0 0 24px rgb(59,130,246,.5)",
                                         }}
-                                        key={item.denom}
+                                        key={key}
                                     >
                                         <div className="flex items-center">
                                             <Avatar>
@@ -69,20 +127,15 @@ const Home = () => {
                                                 </AvatarFallback>
                                             </Avatar>
                                             <span className="ml-4 font-bold">
-                                                $
-                                                {item.denom == "uluna"
-                                                    ? "LUNC"
-                                                    : item.denom
-                                                          .substring(1)
-                                                          .toUpperCase()}
+                                                ${key}
                                             </span>
                                         </div>
                                         <div>
                                             <span className="font-bold">
-                                                {item.amount.substring(
-                                                    0,
-                                                    item.amount.length - 6
-                                                )}
+                                                {allTokenBalances.length > 0
+                                                    ? allTokenBalances[idx]
+                                                          .amount
+                                                    : 0}
                                             </span>
                                         </div>
                                     </div>

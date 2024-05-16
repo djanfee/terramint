@@ -15,11 +15,11 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center justify-center mt-4">
                     <p>
-                        Copyright © 2023-2024 Terra Mint. All rights reserved.
+                        Copyright © 2024-2025 Terra Mint. All rights reserved.
                     </p>
                 </div>
                 <div className="flex items-center justify-center mt-4">
-                    <p>contact@mintca.sh</p>
+                    <p>contact@terrami.nt</p>
                 </div>
             </div>
         </div>

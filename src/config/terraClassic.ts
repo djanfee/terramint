@@ -41,4 +41,32 @@ const terraClassic = {
     },
 };
 
+export const balancesTokens: {
+    [key: string]: { address: string; logo: string };
+} = {
+    MINT: {
+        address:
+            "terra1fr59paklwuqse3c5lskltyd4sgpflu49z6wc2qgzflezkwqv9g6qqzrvah",
+        logo: "",
+    },
+    USDM: {
+        address:
+            "terra14fd7muveu6zw28qwwckfxcs87njncfst8vte5gtz6klmpu2t9qnsc2jkyw",
+        logo: "",
+    },
+};
+
+export const balancesCoins: {
+    [key: string]: { display: string; logo: string };
+} = {
+    uluna: {
+        display: "LUNC",
+        logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/4172.png",
+    },
+    uusd: {
+        display: "USTC",
+        logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/7129.png",
+    },
+};
+
 export default terraClassic;
