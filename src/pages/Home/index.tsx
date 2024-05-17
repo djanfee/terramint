@@ -71,18 +71,18 @@ const Home = () => {
     );
     const { t } = useTranslation();
     return (
-        <div className="relative p-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
+        <div className="relative p-4 lg:p-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
             <Header></Header>
-            <div className="grid grid-cols-12 mt-28 lg:mt-56 gap-4">
+            <div className="grid grid-cols-12 mt-24 lg:mt-56 gap-4">
                 <div className="col-span-12 lg:col-span-5 flex items-center justify-center">
                     <div className="flex items-center justify-center">
                         <div>
-                            <div className="text-6xl font-bold">
-                                <h1 className="leading-[6rem]">
+                            <div className="text-2xl lg:text-6xl font-bold">
+                                <h1 className="leading-10 lg:leading-[6rem]">
                                     {t("home.slogan")}
                                 </h1>
                             </div>
-                            <p className="text-2xl mt-8">
+                            <p className="text-lg mt-4 lg:mt-8">
                                 {t(
                                     "home.syntheticDollarAndInternetNativeYield"
                                 )}

@@ -142,41 +142,15 @@ const Header = () => {
     return (
         <div className="flex items-center justify-between">
             <div className="flex items-center">
-                {/* <div className="lg:hidden">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <div className="flex items-center">
-                                <Avatar>
-                                    <AvatarImage
-                                        src="/src/assets/mint.png"
-                                        alt="@terramint"
-                                    />
-                                    <AvatarFallback>@terramint</AvatarFallback>
-                                </Avatar>
-                                <span className="dark:text-whit font-bold text-xl lg:text-3xl">
-                                    TERRAMINT
-                                </span>
-                            </div>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            {tabs.map((item) => (
-                                <DropdownMenuItem key={item}>
-                                    {item}
-                                </DropdownMenuItem>
-                            ))}
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div> */}
-
-                <div className="flex items-center mr-10">
-                    <Avatar>
+                <div className="flex items-center mr-4">
+                    <Avatar className="w-6 h-6 lg:w-10 lg:h-10">
                         <AvatarImage
                             src="/src/assets/mint.png"
                             alt="@terramint"
                         />
                         <AvatarFallback>@terramint</AvatarFallback>
                     </Avatar>
-                    <span className="dark:text-whit font-bold text-xl lg:text-3xl">
+                    <span className="dark:text-whit lg:font-bold text-lg lg:text-3xl">
                         TERRAMINT
                     </span>
                 </div>
@@ -207,12 +181,12 @@ const Header = () => {
                 </div>
                 <span className="mr-4 hidden lg:block">sUSDM APY: 15.9%</span>
                 <span className="mr-4 hidden lg:block">TVL: 2.11B</span>
-                <Button onClick={handleClickConnect} className="ml-2">
+                <Button size="sm" onClick={handleClickConnect} className="ml-2">
                     {client.registry
                         ? address.length > 13
-                            ? address.substring(0, 5) +
+                            ? address.substring(0, 3) +
                               "..." +
-                              address.substring(address.length - 5)
+                              address.substring(address.length - 4)
                             : ""
                         : t("header.connectWallet")}
                 </Button>
