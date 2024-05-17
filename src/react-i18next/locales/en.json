@@ -1,0 +1,29 @@
+{
+    "header": {
+        "theme": {
+            "light": "light",
+            "dark": "dark"
+        },
+        "lang": {
+            "english": "EN",
+            "chinese": "ZH"
+        },
+        "nav": {
+            "whitepaper": "Whitepaper",
+            "airdrop": "Airdrop",
+            "claim": "Claim",
+            "leaderboard": "Leaderboard"
+        },
+        "connectWallet": "Connect Wallet"
+    },
+    "home": {
+        "balances": "BALANCES",
+        "toGetMore": "To Get More",
+        "enablingThe": "ENABLING THE",
+        "internetBond": "INTERNET BOND_",
+        "syntheticDollarAndInternetNativeYield": "Synthetic Dollar and Internet Native Yield"
+    },
+    "footer": {
+        "copyRight": "Copyright © 2024-2025 Terra Mint. All rights reserved."
+    }
+}

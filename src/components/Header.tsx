@@ -20,6 +20,7 @@ import {
     GitHubLogoIcon,
     DiscordLogoIcon,
     DragHandleHorizontalIcon,
+    GlobeIcon,
 } from "@radix-ui/react-icons";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { useAppSelector, useAppDispatch } from "@/hooks";
@@ -30,9 +31,11 @@ import {
     setCosmCli,
     setAllTokenBalances,
 } from "@/store/modules/appStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 import { balancesTokens } from "@/config/terraClassic";
+import { useTranslation } from "react-i18next";
+import classnames from "classnames";
 
 const Header = () => {
     const { setTheme } = useTheme();
@@ -40,14 +43,14 @@ const Header = () => {
         (state) => state.app
     );
     const dispatch = useAppDispatch();
-
+    const { t, i18n } = useTranslation();
     const tabs: string[] = [
-        "Whitepaper",
-        "Airdrop",
-        "Claim $USDM",
-        "Leaderboard",
+        t("header.nav.whitepaper"),
+        t("header.nav.airdrop"),
+        t("header.nav.claim") + "$USDM",
+        t("header.nav.leaderboard"),
     ];
-
+    const [curLang, setCurLang] = useState("");
     // 初始化 chain
     useEffect(() => {
         connectWallet();
@@ -131,6 +134,11 @@ const Header = () => {
         dispatch(setAddress(accounts[0].address));
         dispatch(setClient(tmpCli));
     };
+
+    const changeLanguage = (lang: "zh" | "en") => {
+        i18n.changeLanguage(lang);
+        setCurLang(lang.toUpperCase());
+    };
     return (
         <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -187,10 +195,35 @@ const Header = () => {
                 </NavigationMenu>
             </div>
             <div className="flex items-center">
-                <div className="lg:flex lg:items-center hidden">
-                    <TwitterLogoIcon className="h-6 w-6 mr-4 cursor-pointer"></TwitterLogoIcon>
-                    <GitHubLogoIcon className="h-6 w-6 mr-4 cursor-pointer"></GitHubLogoIcon>
-                    <DiscordLogoIcon className="h-6 w-6 mr-4 cursor-pointer"></DiscordLogoIcon>
+                <div className="lg:flex lg:items-center hidden gap-2 mr-2">
+                    <TwitterLogoIcon className="h-6 w-6 cursor-pointer"></TwitterLogoIcon>
+                    <GitHubLogoIcon className="h-6 w-6 cursor-pointer"></GitHubLogoIcon>
+                    <DiscordLogoIcon className="h-6 w-6 cursor-pointer"></DiscordLogoIcon>
+                </div>
+                <div className="lg:hidden mr-2">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="icon">
+                                <DragHandleHorizontalIcon className="h-6 w-6"></DragHandleHorizontalIcon>
+                                <span className="sr-only">
+                                    Expand Navigation
+                                </span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuItem>
+                                <TwitterLogoIcon className="h-6 w-6 cursor-pointer"></TwitterLogoIcon>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <GitHubLogoIcon className="h-6 w-6 cursor-pointer"></GitHubLogoIcon>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <DiscordLogoIcon className="h-6 w-6 cursor-pointer"></DiscordLogoIcon>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+                <div className="mr-2">
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline" size="icon">
@@ -201,31 +234,58 @@ const Header = () => {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             <DropdownMenuItem onClick={() => setTheme("light")}>
-                                Light
+                                {t("header.theme.light")}
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => setTheme("dark")}>
-                                Dark
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => setTheme("system")}
-                            >
-                                System
+                                {t("header.theme.dark")}
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
-                <p className="ml-4">
-                    {address.length > 13
-                        ? address.substring(0, 10) +
-                          "..." +
-                          address.substring(address.length - 5)
-                        : ""}
-                </p>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline" size="icon">
+                            {/* <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" /> */}
+                            <GlobeIcon
+                                className={classnames(
+                                    "h-[1.2rem]",
+                                    "w-[1.2rem]",
+                                    {
+                                        hidden: curLang !== "",
+                                    }
+                                )}
+                            ></GlobeIcon>
+                            <span
+                                className={classnames({
+                                    hidden: curLang === "",
+                                })}
+                            >
+                                {curLang}
+                            </span>
+                            <span className="sr-only">Toggle theme</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => changeLanguage("zh")}>
+                            中文
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => changeLanguage("en")}>
+                            English
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
                 <Button
-                    onClick={client.registry ? disconnect : connectWallet}
-                    className="ml-4"
+                    onClick={client.registry && disconnect}
+                    className="ml-2"
                 >
-                    {client.registry ? "Disconnect Wallet" : "Connect Wallet"}
+                    {client.registry
+                        ? address.length > 13
+                            ? address.substring(0, 10) +
+                              "..." +
+                              address.substring(address.length - 5)
+                            : ""
+                        : t("header.connectWallet")}
                 </Button>
             </div>
         </div>

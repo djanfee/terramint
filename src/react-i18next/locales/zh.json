@@ -1,0 +1,29 @@
+{
+    "header": {
+        "theme": {
+            "light": "白天",
+            "dark": "夜晚"
+        },
+        "lang": {
+            "english": "EN",
+            "chinese": "ZH"
+        },
+        "nav": {
+            "whitepaper": "白皮书",
+            "airdrop": "空投",
+            "claim": "领取",
+            "leaderboard": "排行榜"
+        },
+        "connectWallet": "连接钱包"
+    },
+    "home": {
+        "balances": "余额",
+        "toGetMore": "去获取更多",
+        "enablingThe": "正在启动",
+        "internetBond": "互联网债券",
+        "syntheticDollarAndInternetNativeYield": "美元稳定币以及互联网原生收益"
+    },
+    "footer": {
+        "copyRight": "© 2024-2025 Terra Mint 版权所有"
+    }
+}

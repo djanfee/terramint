@@ -1,5 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTranslation } from "react-i18next";
 const Footer = () => {
+    const { t } = useTranslation();
     return (
         <div className="absolute left-0 right-0 bottom-0 min-h-40 flex items-center justify-center">
             <div className="">
@@ -14,9 +16,7 @@ const Footer = () => {
                     <span className="dark:text-whit text-2xl">TERRA MINT</span>
                 </div>
                 <div className="flex items-center justify-center mt-4">
-                    <p>
-                        Copyright © 2024-2025 Terra Mint. All rights reserved.
-                    </p>
+                    <p>{t("footer.copyRight")}</p>
                 </div>
                 <div className="flex items-center justify-center mt-4">
                     <p>contact@terrami.nt</p>
