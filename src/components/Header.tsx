@@ -206,7 +206,7 @@ const Header = () => {
                     <p className="font-bold text-blue-200">15.9%</p>
                 </div>
                 <span className="mr-4 hidden lg:block">sUSDM APY: 15.9%</span>
-                <span className="mr-4 hidden log:block">TVL: 2.11B</span>
+                <span className="mr-4 hidden lg:block">TVL: 2.11B</span>
                 <Button onClick={handleClickConnect} className="ml-2">
                     {client.registry
                         ? address.length > 13
