@@ -32,7 +32,7 @@ const renderBalance = (allBalances: Coin[], displayDenom: string) => {
                         <AvatarImage src={item.logo} alt="@terramint" />
                         <AvatarFallback>@terramint</AvatarFallback>
                     </Avatar>
-                    <span className="ml-4 font-bold">${item.display}</span>
+                    <span className="ml-4 font-bold">{item.display}</span>
                 </div>
                 <div>
                     <span className="font-bold">
@@ -55,7 +55,7 @@ const renderBalance = (allBalances: Coin[], displayDenom: string) => {
                         <AvatarImage src={item.logo} alt="@terramint" />
                         <AvatarFallback>@terramint</AvatarFallback>
                     </Avatar>
-                    <span className="ml-4 font-bold">${item.display}</span>
+                    <span className="ml-4 font-bold">{item.display}</span>
                 </div>
                 <div>
                     <span className="font-bold">0</span>
@@ -74,13 +74,12 @@ const Home = () => {
         <div className="relative p-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
             <Header></Header>
             <div className="grid grid-cols-12 mt-56 gap-4">
-                <div className="col-span-12 lg:col-span-4 flex items-center justify-center">
+                <div className="col-span-12 lg:col-span-5 flex items-center justify-center">
                     <div className="flex items-center justify-center">
                         <div>
                             <div className="text-6xl font-bold">
-                                <h1>{t("home.enablingThe")}</h1>
-                                <h1 className="mt-8">
-                                    {t("home.internetBond")}
+                                <h1 className="leading-[6rem]">
+                                    {t("home.slogan")}
                                 </h1>
                             </div>
                             <p className="text-2xl mt-8">
@@ -99,7 +98,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-12 lg:col-start-5 lg:col-span-4 flex items-center justify-center">
+                <div className="col-span-12 lg:col-start-6 lg:col-span-3 flex items-center justify-center">
                     <video autoPlay loop muted playsInline className="mx-auto">
                         <source src="https://assets-global.website-files.com/611153e7af981472d8da199c/62cfd854bf4cb1f9af5a784d_04Scroll-C-transcode.mp4" />
                         <source src="https://assets-global.website-files.com/611153e7af981472d8da199c/62cfd854bf4cb1f9af5a784d_04Scroll-C-transcode.webm" />
@@ -135,7 +134,7 @@ const Home = () => {
                                                 </AvatarFallback>
                                             </Avatar>
                                             <span className="ml-4 font-bold">
-                                                ${key}
+                                                {key}
                                             </span>
                                         </div>
                                         <div>

@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -14,13 +13,13 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useTheme } from "@/components/ThemeProvider";
 import {
     TwitterLogoIcon,
     GitHubLogoIcon,
     DiscordLogoIcon,
     DragHandleHorizontalIcon,
     GlobeIcon,
+    PaperPlaneIcon,
 } from "@radix-ui/react-icons";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { useAppSelector, useAppDispatch } from "@/hooks";
@@ -38,17 +37,18 @@ import { useTranslation } from "react-i18next";
 import classnames from "classnames";
 
 const Header = () => {
-    const { setTheme } = useTheme();
     const { client, chain, address, cosmCli } = useAppSelector(
         (state) => state.app
     );
     const dispatch = useAppDispatch();
     const { t, i18n } = useTranslation();
     const tabs: string[] = [
+        t("header.nav.mintAndAirdrop"),
+        t("header.nav.buy"),
+        t("header.nav.stake"),
+        t("header.nav.community"),
+        t("header.nav.docs"),
         t("header.nav.whitepaper"),
-        t("header.nav.airdrop"),
-        t("header.nav.claim") + "$USDM",
-        t("header.nav.leaderboard"),
     ];
     const [curLang, setCurLang] = useState("");
     // 初始化 chain
@@ -102,15 +102,22 @@ const Header = () => {
     };
 
     // 断开链接钱包
-    const disconnect = async () => {
-        await Promise.all([client.disconnect(), cosmCli.disconnect()]);
-        dispatch(setAddress(""));
-        dispatch(setClient({} as SigningStargateClient));
-        dispatch(setCosmCli({} as SigningCosmWasmClient));
-        dispatch(setAllBalances([]));
-        dispatch(setAllTokenBalances([]));
-    };
+    // const disconnect = async () => {
+    //     await Promise.all([client.disconnect(), cosmCli.disconnect()]);
+    //     dispatch(setAddress(""));
+    //     dispatch(setClient({} as SigningStargateClient));
+    //     dispatch(setCosmCli({} as SigningCosmWasmClient));
+    //     dispatch(setAllBalances([]));
+    //     dispatch(setAllTokenBalances([]));
+    // };
 
+    // 点击链接钱包
+    const handleClickConnect = () => {
+        if (address != "") {
+            return;
+        }
+        connectWallet();
+    };
     // 连接keplr钱包  Todo
     const connectWallet = async () => {
         if (!window.keplr) {
@@ -133,6 +140,11 @@ const Header = () => {
         dispatch(setCosmCli(cosmCli));
         dispatch(setAddress(accounts[0].address));
         dispatch(setClient(tmpCli));
+    };
+
+    // 打开连接
+    const openBlankLink = (link: string) => {
+        window.open(link, "_blank");
     };
 
     const changeLanguage = (lang: "zh" | "en") => {
@@ -171,7 +183,7 @@ const Header = () => {
                         <AvatarFallback>@terramint</AvatarFallback>
                     </Avatar>
                     <span className="dark:text-whit font-bold text-xl lg:text-3xl">
-                        TERRA MINT
+                        TERRAMINT
                     </span>
                 </div>
                 <NavigationMenu className="hidden lg:block">
@@ -195,10 +207,51 @@ const Header = () => {
                 </NavigationMenu>
             </div>
             <div className="flex items-center">
-                <div className="lg:flex lg:items-center hidden gap-2 mr-2">
-                    <TwitterLogoIcon className="h-6 w-6 cursor-pointer"></TwitterLogoIcon>
+                <div className="lg:flex lg:items-center hidden gap-4 mr-4">
+                    <TwitterLogoIcon
+                        className="h-6 w-6 cursor-pointer"
+                        onClick={() => openBlankLink("https://x.com/Terramint")}
+                    ></TwitterLogoIcon>
                     <GitHubLogoIcon className="h-6 w-6 cursor-pointer"></GitHubLogoIcon>
-                    <DiscordLogoIcon className="h-6 w-6 cursor-pointer"></DiscordLogoIcon>
+                    <PaperPlaneIcon
+                        className="h-6 w-6 cursor-pointer"
+                        onClick={() => openBlankLink("https://t.me/Terramintm")}
+                    ></PaperPlaneIcon>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="icon">
+                                <GlobeIcon
+                                    className={classnames(
+                                        "h-[1.2rem]",
+                                        "w-[1.2rem]",
+                                        {
+                                            hidden: curLang !== "",
+                                        }
+                                    )}
+                                ></GlobeIcon>
+                                <span
+                                    className={classnames({
+                                        hidden: curLang === "",
+                                    })}
+                                >
+                                    {curLang}
+                                </span>
+                                <span className="sr-only">Toggle theme</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuItem
+                                onClick={() => changeLanguage("zh")}
+                            >
+                                中文
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                                onClick={() => changeLanguage("en")}
+                            >
+                                English
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
                 <div className="lg:hidden mr-2">
                     <DropdownMenu>
@@ -223,62 +276,10 @@ const Header = () => {
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
-                <div className="mr-2">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="outline" size="icon">
-                                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                                <span className="sr-only">Toggle theme</span>
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuItem onClick={() => setTheme("light")}>
-                                {t("header.theme.light")}
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => setTheme("dark")}>
-                                {t("header.theme.dark")}
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="icon">
-                            {/* <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" /> */}
-                            <GlobeIcon
-                                className={classnames(
-                                    "h-[1.2rem]",
-                                    "w-[1.2rem]",
-                                    {
-                                        hidden: curLang !== "",
-                                    }
-                                )}
-                            ></GlobeIcon>
-                            <span
-                                className={classnames({
-                                    hidden: curLang === "",
-                                })}
-                            >
-                                {curLang}
-                            </span>
-                            <span className="sr-only">Toggle theme</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => changeLanguage("zh")}>
-                            中文
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => changeLanguage("en")}>
-                            English
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-                <Button
-                    onClick={client.registry && disconnect}
-                    className="ml-2"
-                >
+
+                <span className="mr-4">sUSDM APY: 15.9%</span>
+                <span className="mr-4">TVL: 2.11B</span>
+                <Button onClick={handleClickConnect} className="ml-2">
                     {client.registry
                         ? address.length > 13
                             ? address.substring(0, 10) +

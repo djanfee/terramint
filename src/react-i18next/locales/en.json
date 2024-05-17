@@ -1,26 +1,23 @@
 {
     "header": {
-        "theme": {
-            "light": "light",
-            "dark": "dark"
-        },
         "lang": {
             "english": "EN",
             "chinese": "ZH"
         },
         "nav": {
             "whitepaper": "Whitepaper",
-            "airdrop": "Airdrop",
-            "claim": "Claim",
-            "leaderboard": "Leaderboard"
+            "mintAndAirdrop": "Mint&Airdrop",
+            "buy": "Buy",
+            "stake": "Stake",
+            "community": "Community",
+            "docs": "Docs"
         },
         "connectWallet": "Connect Wallet"
     },
     "home": {
         "balances": "BALANCES",
         "toGetMore": "To Get More",
-        "enablingThe": "ENABLING THE",
-        "internetBond": "INTERNET BOND_",
+        "slogan": "CRYPTO NEEDS DECENTRALIZED BASE MONEY ASSET_",
         "syntheticDollarAndInternetNativeYield": "Synthetic Dollar and Internet Native Yield"
     },
     "footer": {
