@@ -253,30 +253,6 @@ const Header = () => {
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
-                <div className="lg:hidden mr-2">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="outline" size="icon">
-                                <DragHandleHorizontalIcon className="h-6 w-6"></DragHandleHorizontalIcon>
-                                <span className="sr-only">
-                                    Expand Navigation
-                                </span>
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuItem>
-                                <TwitterLogoIcon className="h-6 w-6 cursor-pointer"></TwitterLogoIcon>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <GitHubLogoIcon className="h-6 w-6 cursor-pointer"></GitHubLogoIcon>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <DiscordLogoIcon className="h-6 w-6 cursor-pointer"></DiscordLogoIcon>
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-
                 <span className="mr-4">sUSDM APY: 15.9%</span>
                 <span className="mr-4">TVL: 2.11B</span>
                 <Button onClick={handleClickConnect} className="ml-2">
@@ -288,6 +264,33 @@ const Header = () => {
                             : ""
                         : t("header.connectWallet")}
                 </Button>
+                <div className="lg:hidden ml-4">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="icon">
+                                <DragHandleHorizontalIcon className="h-6 w-6"></DragHandleHorizontalIcon>
+                                <span className="sr-only">
+                                    Expand Navigation
+                                </span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <TwitterLogoIcon
+                                className="h-6 w-6 cursor-pointer"
+                                onClick={() =>
+                                    openBlankLink("https://x.com/Terramint")
+                                }
+                            ></TwitterLogoIcon>
+                            <GitHubLogoIcon className="h-6 w-6 cursor-pointer"></GitHubLogoIcon>
+                            <PaperPlaneIcon
+                                className="h-6 w-6 cursor-pointer"
+                                onClick={() =>
+                                    openBlankLink("https://t.me/Terramintm")
+                                }
+                            ></PaperPlaneIcon>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             </div>
         </div>
     );
