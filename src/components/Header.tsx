@@ -143,7 +143,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
             <div className="flex items-center">
                 <div className="flex items-center mr-4">
-                    <Avatar className="w-6 h-6 lg:w-10 lg:h-10">
+                    <Avatar className="hidden lg:block">
                         <AvatarImage
                             src="/src/assets/mint.png"
                             alt="@terramint"
