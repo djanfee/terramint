@@ -13,13 +13,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-    TwitterLogoIcon,
-    GitHubLogoIcon,
-    DragHandleHorizontalIcon,
-    GlobeIcon,
-    PaperPlaneIcon,
-} from "@radix-ui/react-icons";
+import { DragHandleHorizontalIcon, GlobeIcon } from "@radix-ui/react-icons";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { useAppSelector, useAppDispatch } from "@/hooks";
 import {
@@ -139,11 +133,6 @@ const Header = () => {
         dispatch(setCosmCli(cosmCli));
         dispatch(setAddress(accounts[0].address));
         dispatch(setClient(tmpCli));
-    };
-
-    // 打开连接
-    const openBlankLink = (link: string) => {
-        window.open(link, "_blank");
     };
 
     const changeLanguage = (lang: "zh" | "en") => {
