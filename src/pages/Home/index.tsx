@@ -73,7 +73,7 @@ const Home = () => {
     return (
         <div className="relative p-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
             <Header></Header>
-            <div className="grid grid-cols-12 mt-56 gap-4">
+            <div className="grid grid-cols-12 mt-28 lg:mt-56 gap-4">
                 <div className="col-span-12 lg:col-span-5 flex items-center justify-center">
                     <div className="flex items-center justify-center">
                         <div>

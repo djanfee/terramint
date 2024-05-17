@@ -16,7 +16,6 @@ import {
 import {
     TwitterLogoIcon,
     GitHubLogoIcon,
-    DiscordLogoIcon,
     DragHandleHorizontalIcon,
     GlobeIcon,
     PaperPlaneIcon,
@@ -154,15 +153,21 @@ const Header = () => {
     return (
         <div className="flex items-center justify-between">
             <div className="flex items-center">
-                <div className="lg:hidden">
+                {/* <div className="lg:hidden">
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button variant="outline" size="icon">
-                                <DragHandleHorizontalIcon className="h-6 w-6"></DragHandleHorizontalIcon>
-                                <span className="sr-only">
-                                    Expand Navigation
+                            <div className="flex items-center">
+                                <Avatar>
+                                    <AvatarImage
+                                        src="/src/assets/mint.png"
+                                        alt="@terramint"
+                                    />
+                                    <AvatarFallback>@terramint</AvatarFallback>
+                                </Avatar>
+                                <span className="dark:text-whit font-bold text-xl lg:text-3xl">
+                                    TERRAMINT
                                 </span>
-                            </Button>
+                            </div>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             {tabs.map((item) => (
@@ -172,7 +177,7 @@ const Header = () => {
                             ))}
                         </DropdownMenuContent>
                     </DropdownMenu>
-                </div>
+                </div> */}
 
                 <div className="flex items-center mr-10">
                     <Avatar>
@@ -207,16 +212,41 @@ const Header = () => {
                 </NavigationMenu>
             </div>
             <div className="flex items-center">
-                <div className="lg:flex lg:items-center hidden gap-4 mr-4">
-                    <TwitterLogoIcon
-                        className="h-6 w-6 cursor-pointer"
-                        onClick={() => openBlankLink("https://x.com/Terramint")}
-                    ></TwitterLogoIcon>
-                    <GitHubLogoIcon className="h-6 w-6 cursor-pointer"></GitHubLogoIcon>
-                    <PaperPlaneIcon
-                        className="h-6 w-6 cursor-pointer"
-                        onClick={() => openBlankLink("https://t.me/Terramintm")}
-                    ></PaperPlaneIcon>
+                <div className="lg:hidden flex flex-col items-center mr-4">
+                    <p className="text-sm">Yield</p>
+                    <p className="font-bold text-blue-200">15.9%</p>
+                </div>
+                <span className="mr-4 hidden lg:block">sUSDM APY: 15.9%</span>
+                <span className="mr-4 hidden log:block">TVL: 2.11B</span>
+                <Button onClick={handleClickConnect} className="ml-2">
+                    {client.registry
+                        ? address.length > 13
+                            ? address.substring(0, 5) +
+                              "..." +
+                              address.substring(address.length - 5)
+                            : ""
+                        : t("header.connectWallet")}
+                </Button>
+                <div className="lg:hidden ml-4">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="icon">
+                                <DragHandleHorizontalIcon className="h-6 w-6"></DragHandleHorizontalIcon>
+                                <span className="sr-only">
+                                    Expand Navigation
+                                </span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            {tabs.map((item) => (
+                                <DropdownMenuItem key={item}>
+                                    {item}
+                                </DropdownMenuItem>
+                            ))}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+                <div className="lg:flex lg:items-center hidden gap-4 ml-4">
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline" size="icon">
@@ -250,44 +280,6 @@ const Header = () => {
                             >
                                 English
                             </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-                <span className="mr-4">sUSDM APY: 15.9%</span>
-                <span className="mr-4">TVL: 2.11B</span>
-                <Button onClick={handleClickConnect} className="ml-2">
-                    {client.registry
-                        ? address.length > 13
-                            ? address.substring(0, 10) +
-                              "..." +
-                              address.substring(address.length - 5)
-                            : ""
-                        : t("header.connectWallet")}
-                </Button>
-                <div className="lg:hidden ml-4">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="outline" size="icon">
-                                <DragHandleHorizontalIcon className="h-6 w-6"></DragHandleHorizontalIcon>
-                                <span className="sr-only">
-                                    Expand Navigation
-                                </span>
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <TwitterLogoIcon
-                                className="h-6 w-6 cursor-pointer"
-                                onClick={() =>
-                                    openBlankLink("https://x.com/Terramint")
-                                }
-                            ></TwitterLogoIcon>
-                            <GitHubLogoIcon className="h-6 w-6 cursor-pointer"></GitHubLogoIcon>
-                            <PaperPlaneIcon
-                                className="h-6 w-6 cursor-pointer"
-                                onClick={() =>
-                                    openBlankLink("https://t.me/Terramintm")
-                                }
-                            ></PaperPlaneIcon>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
