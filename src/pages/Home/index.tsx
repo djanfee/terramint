@@ -166,12 +166,12 @@ const Home = () => {
                                     <Icons.binance className="w-16"></Icons.binance>
                                     <Icons.okx className="w-9"></Icons.okx>
                                     <img
-                                        src="/src/assets/coinhall.jpg"
+                                        src="/assets/coinhall.jpg"
                                         alt="coinhall"
                                         className="w-10 h-10"
                                     />
                                     <img
-                                        src="/src/assets/terraport.jpg"
+                                        src="/assets/terraport.jpg"
                                         alt="terraport"
                                         className="w-7 h-7 relative top-1"
                                     />
