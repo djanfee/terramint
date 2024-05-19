@@ -1,18 +1,12 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import {
-    Card,
-    CardContent,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAppSelector } from "@/hooks";
 import { balancesCoins, balancesTokens } from "@/config/terraClassic";
 import { Coin } from "@cosmjs/stargate";
 import { useTranslation } from "react-i18next";
+import { Icons } from "@/components/icons";
 
 const renderBalance = (allBalances: Coin[], displayDenom: string) => {
     const idx = allBalances.findIndex((item) => item.denom === displayDenom);
@@ -71,18 +65,18 @@ const Home = () => {
     );
     const { t } = useTranslation();
     return (
-        <div className="relative p-4 lg:p-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
+        <div className="relative p-4 xl:p-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
             <Header></Header>
-            <div className="grid grid-cols-12 mt-24 lg:mt-56 gap-4">
-                <div className="col-span-12 lg:col-span-5 flex items-center justify-center">
+            <div className="grid grid-cols-12 gap-4 mt-10">
+                <div className="col-span-12 xl:col-span-5 flex items-center justify-center">
                     <div className="flex items-center justify-center">
                         <div>
-                            <div className="text-3xl lg:text-6xl font-bold">
-                                <h1 className="leading-10 lg:leading-[6rem]">
+                            <div className="text-3xl xl:text-6xl font-bold">
+                                <h1 className="leading-10 xl:leading-[6rem]">
                                     {t("home.slogan")}
                                 </h1>
                             </div>
-                            <p className="text-lg mt-4 lg:mt-8">
+                            <p className="text-lg mt-4 xl:mt-8">
                                 {t(
                                     "home.syntheticDollarAndInternetNativeYield"
                                 )}
@@ -93,68 +87,86 @@ const Home = () => {
                                     boxShadow: "0 0 24px rgb(59,130,246,.5)",
                                 }}
                             >
-                                <span>$USDM APY 15.9%</span>
+                                <span>sUSDM APY 15.9%</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-span-12 lg:col-start-6 lg:col-span-3 flex items-center justify-center">
+                <div className="min-h-[60rem] col-span-12 xl:col-start-6 xl:col-span-3 flex items-center justify-center">
                     <video autoPlay loop muted playsInline className="mx-auto">
                         <source src="https://assets-global.website-files.com/611153e7af981472d8da199c/62cfd854bf4cb1f9af5a784d_04Scroll-C-transcode.mp4" />
                         <source src="https://assets-global.website-files.com/611153e7af981472d8da199c/62cfd854bf4cb1f9af5a784d_04Scroll-C-transcode.webm" />
                     </video>
                 </div>
-                <div className="col-span-12 lg:col-start-9 lg:col-span-4 flex items-center justify-center">
-                    <Card className="w-full">
-                        <CardHeader>
-                            <CardTitle>{t("home.balances")}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <div>
-                                {Object.keys(balancesCoins).map((key) =>
-                                    renderBalance(allBalances, key)
-                                )}
-                                {Object.keys(balancesTokens).map((key, idx) => (
-                                    <div
-                                        className="flex items-center justify-between rounded-md py-4 px-10 mb-6"
-                                        style={{
-                                            boxShadow:
-                                                "0 0 24px rgb(59,130,246,.5)",
-                                        }}
-                                        key={key}
-                                    >
-                                        <div className="flex items-center">
-                                            <Avatar>
-                                                <AvatarImage
-                                                    src="/src/assets/mint.png"
-                                                    alt="@terramint"
-                                                />
-                                                <AvatarFallback>
-                                                    @terramint
-                                                </AvatarFallback>
-                                            </Avatar>
-                                            <span className="ml-4 font-bold">
-                                                {key}
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span className="font-bold">
-                                                {allTokenBalances.length > 0
-                                                    ? allTokenBalances[idx]
-                                                          .amount
-                                                    : 0}
-                                            </span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </CardContent>
-                        <CardFooter className="flex justify-center">
-                            <Button className="font-bold w-full">
-                                {t("home.toGetMore")}
-                            </Button>
-                        </CardFooter>
-                    </Card>
+                <div className="col-span-12 xl:col-start-9 xl:col-span-4 flex flex-col items-center justify-center gap-6">
+                    <div className="w-full">
+                        <Card className="w-full">
+                            <CardHeader>
+                                <CardTitle>{t("home.balances")}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div>
+                                    {Object.keys(balancesCoins).map((key) =>
+                                        renderBalance(allBalances, key)
+                                    )}
+                                    {Object.keys(balancesTokens).map(
+                                        (key, idx) => (
+                                            <div
+                                                className="flex items-center justify-between rounded-md py-4 px-10 mb-6"
+                                                style={{
+                                                    boxShadow:
+                                                        "0 0 24px rgb(59,130,246,.5)",
+                                                }}
+                                                key={key}
+                                            >
+                                                <div className="flex items-center">
+                                                    <Avatar>
+                                                        <AvatarImage
+                                                            src="/src/assets/mint.png"
+                                                            alt="@terramint"
+                                                        />
+                                                        <AvatarFallback>
+                                                            @terramint
+                                                        </AvatarFallback>
+                                                    </Avatar>
+                                                    <span className="ml-4 font-bold">
+                                                        {key}
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span className="font-bold">
+                                                        {allTokenBalances.length >
+                                                        0
+                                                            ? allTokenBalances[
+                                                                  idx
+                                                              ].amount
+                                                            : 0}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        )
+                                    )}
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card className="w-full mt-6">
+                            <CardHeader>
+                                <CardTitle>{t("home.backedBy")}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="flex justify-center gap-4">
+                                    <Icons.binance className="w-16"></Icons.binance>
+                                    <Icons.okx className="w-9"></Icons.okx>
+                                    <Icons.coinhall className="w-9"></Icons.coinhall>
+                                    <img
+                                        src="https://terraport.finance/static/media/terra.acc8be7042040fb33331.png"
+                                        alt="terraport"
+                                        className="w-8 h-8"
+                                    />
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
             </div>
             <Footer></Footer>

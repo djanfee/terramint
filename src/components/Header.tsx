@@ -143,18 +143,18 @@ const Header = () => {
         <div className="flex items-center justify-between">
             <div className="flex items-center">
                 <div className="flex items-center mr-4">
-                    <Avatar className="hidden lg:block">
+                    <Avatar className="hidden xl:block">
                         <AvatarImage
                             src="/src/assets/mint.png"
                             alt="@terramint"
                         />
                         <AvatarFallback>@terramint</AvatarFallback>
                     </Avatar>
-                    <span className="dark:text-whit lg:font-bold text-lg lg:text-3xl">
+                    <span className="dark:text-whit xl:font-bold text-lg xl:text-3xl">
                         TERRAMINT
                     </span>
                 </div>
-                <NavigationMenu className="hidden lg:block">
+                <NavigationMenu className="hidden xl:block">
                     <NavigationMenuList className="text-lg">
                         {tabs.map((item) => (
                             <NavigationMenuItem
@@ -175,12 +175,12 @@ const Header = () => {
                 </NavigationMenu>
             </div>
             <div className="flex items-center">
-                <div className="lg:hidden flex flex-col items-center mr-4">
+                <div className="xl:hidden flex flex-col items-center mr-4">
                     <p className="text-sm">Yield</p>
                     <p className="font-bold text-blue-200">15.9%</p>
                 </div>
-                <span className="mr-4 hidden lg:block">sUSDM APY: 15.9%</span>
-                <span className="mr-4 hidden lg:block">TVL: 2.11B</span>
+                <span className="mr-4 hidden xl:block">sUSDM APY: 15.9%</span>
+                <span className="mr-4 hidden xl:block">TVL: 2.11B</span>
                 <Button size="sm" onClick={handleClickConnect} className="ml-2">
                     {client.registry
                         ? address.length > 13
@@ -190,7 +190,7 @@ const Header = () => {
                             : ""
                         : t("header.connectWallet")}
                 </Button>
-                <div className="lg:hidden ml-4">
+                <div className="xl:hidden ml-4">
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline" size="icon">
@@ -209,7 +209,7 @@ const Header = () => {
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
-                <div className="lg:flex lg:items-center hidden gap-4 ml-4">
+                <div className="xl:flex xl:items-center hidden gap-4 ml-4">
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline" size="icon">
