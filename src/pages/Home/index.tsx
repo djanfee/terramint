@@ -65,7 +65,7 @@ const Home = () => {
     );
     const { t } = useTranslation();
     return (
-        <div className="relative p-4 xl:p-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
+        <div className="relative p-4 xl:px-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
             <Header></Header>
             <div className="grid grid-cols-12 gap-6 h-full pt-10">
                 <div className="col-span-12 xl:col-span-6 flex items-center justify-center">

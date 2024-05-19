@@ -180,8 +180,12 @@ const Header = () => {
                     <p className="font-bold text-blue-200">15.9%</p>
                 </div>
                 <span className="mr-4 hidden xl:block">sUSDM APY: 15.9%</span>
-                <span className="mr-4 hidden xl:block">TVL: 2.11B</span>
-                <Button size="sm" onClick={handleClickConnect} className="ml-2">
+                <span className="mr-4 hidden xl:block">TVL: ***</span>
+                <Button
+                    size="sm"
+                    onClick={handleClickConnect}
+                    className="ml-2 min-w-10"
+                >
                     {client.registry
                         ? address.length > 13
                             ? address.substring(0, 6) +
