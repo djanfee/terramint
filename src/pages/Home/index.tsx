@@ -30,7 +30,7 @@ const renderBalance = (allBalances: Coin[], displayDenom: string) => {
                 </div>
                 <div>
                     <span className="font-bold">
-                        {(Number(coin.amount) / 6).toFixed(6)}
+                        {(Number(coin.amount) / 1000000).toFixed(2)}
                     </span>
                 </div>
             </div>
@@ -139,7 +139,7 @@ const Home = () => {
                                                         0
                                                             ? allTokenBalances[
                                                                   idx
-                                                              ].amount
+                                                              ].amount / 1000000
                                                             : 0}
                                                     </span>
                                                 </div>
