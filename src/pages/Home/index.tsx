@@ -166,12 +166,12 @@ const Home = () => {
                                     <Icons.binance className="w-16"></Icons.binance>
                                     <Icons.okx className="w-9"></Icons.okx>
                                     <img
-                                        src="/assets/coinhall.jpg"
+                                        src="https://i.ibb.co/x5LsqmS/photo-2024-05-19-12-44-02.jpg"
                                         alt="coinhall"
                                         className="w-10 h-10"
                                     />
                                     <img
-                                        src="/assets/terraport.jpg"
+                                        src="https://i.ibb.co/g7YLf7f/photo-2024-05-19-12-44-02-2.jpg"
                                         alt="terraport"
                                         className="w-7 h-7 relative top-1"
                                     />
