@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAppSelector } from "@/hooks";
 import { balancesCoins, balancesTokens } from "@/config/terraClassic";
@@ -38,7 +38,7 @@ const renderBalance = (allBalances: Coin[], displayDenom: string) => {
     } else {
         return (
             <div
-                className="flex items-center justify-between rounded-md py-4 px-10 mb-6"
+                className="flex items-center justify-between rounded-md py-2 px-10 mb-4"
                 style={{
                     boxShadow: "0 0 24px rgb(59,130,246,.5)",
                 }}
@@ -67,8 +67,8 @@ const Home = () => {
     return (
         <div className="relative p-4 xl:px-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
             <Header></Header>
-            <div className="grid grid-cols-12 gap-6 h-full pt-10">
-                <div className="col-span-12 xl:col-span-6 flex items-center justify-center relative top-[-4rem]">
+            <div className="grid grid-cols-12 gap-4 h-full pt-10">
+                <div className="col-span-12 xl:col-span-6 flex items-center justify-center relative top-[-4rem] pt-10">
                     <div className="flex items-center justify-center">
                         <div>
                             <div className="text-3xl md:text-[4rem] leading-tight md:leading-[4.5rem] font-semibold break-words">
@@ -101,13 +101,9 @@ const Home = () => {
                 <div className="col-span-12 xl:col-start-10 xl:col-span-3 flex flex-col items-center justify-center gap-6">
                     <div className="w-full">
                         <Card className="w-full">
-                            <CardHeader>
-                                <CardTitle>
-                                    <div className="flex justify-center">
-                                        <span>{t("home.balances")}</span>
-                                    </div>
-                                </CardTitle>
-                            </CardHeader>
+                            <div className="flex justify-center py-2 font-bold">
+                                <span>{t("home.balances")}</span>
+                            </div>
                             <CardContent>
                                 <div>
                                     {Object.keys(balancesCoins).map((key) =>
@@ -154,13 +150,9 @@ const Home = () => {
                             </CardContent>
                         </Card>
                         <Card className="w-full mt-6">
-                            <CardHeader>
-                                <CardTitle>
-                                    <div className="flex justify-center">
-                                        <span>{t("home.backedBy")}</span>
-                                    </div>
-                                </CardTitle>
-                            </CardHeader>
+                            <div className="flex justify-center py-2 font-bold">
+                                <span>{t("home.backedBy")}</span>
+                            </div>
                             <CardContent>
                                 <div className="flex justify-center gap-4">
                                     <Icons.binance className="w-16"></Icons.binance>

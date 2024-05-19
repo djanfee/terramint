@@ -175,16 +175,12 @@ const Header = () => {
                 </NavigationMenu>
             </div>
             <div className="flex items-center">
-                <div className="xl:hidden flex flex-col items-center mr-4">
-                    <p className="text-sm">Yield</p>
-                    <p className="font-bold text-blue-200">15.9%</p>
-                </div>
                 <span className="mr-4 hidden xl:block">sUSDM APY: 15.9%</span>
                 <span className="mr-4 hidden xl:block">TVL: ***</span>
                 <Button
                     size="sm"
                     onClick={handleClickConnect}
-                    className="ml-2 min-w-10"
+                    className="ml-2 px-6"
                 >
                     {client.registry
                         ? address.length > 13
