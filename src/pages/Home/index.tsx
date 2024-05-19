@@ -165,11 +165,15 @@ const Home = () => {
                                 <div className="flex justify-center gap-4">
                                     <Icons.binance className="w-16"></Icons.binance>
                                     <Icons.okx className="w-9"></Icons.okx>
-                                    <Icons.coinhall className="w-9"></Icons.coinhall>
                                     <img
-                                        src="https://terraport.finance/static/media/terra.acc8be7042040fb33331.png"
+                                        src="/src/assets/coinhall.jpg"
+                                        alt="coinhall"
+                                        className="w-10 h-10"
+                                    />
+                                    <img
+                                        src="/src/assets/terraport.jpg"
                                         alt="terraport"
-                                        className="w-8 h-8"
+                                        className="w-7 h-7 relative top-1"
                                     />
                                 </div>
                             </CardContent>
