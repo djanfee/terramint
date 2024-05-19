@@ -10,7 +10,7 @@ const openBlankLink = (link: string) => {
 };
 const Footer = () => {
     return (
-        <div className="absolute left-0 right-0 bottom-6 min-h-40 flex items-center justify-center">
+        <div className="absolute left-0 right-0 bottom-6 min-h-10 flex items-center justify-center">
             <div className="">
                 <div className="flex items-center justify-center mt-4 gap-6">
                     <TwitterLogoIcon
