@@ -12,7 +12,8 @@
             "community": "Community",
             "docs": "Docs"
         },
-        "connectWallet": "Connect Wallet"
+        "connectWallet": "Connect Wallet",
+        "keplrInstallTip": "Please install keplr extension"
     },
     "home": {
         "balances": "BALANCES",

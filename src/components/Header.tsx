@@ -105,6 +105,10 @@ const Header = () => {
 
     // 点击链接钱包
     const handleClickConnect = () => {
+        if (!window.keplr) {
+            alert(t("header.keplrInstallTip"));
+            return;
+        }
         if (address != "") {
             return;
         }
@@ -113,7 +117,6 @@ const Header = () => {
     // 连接keplr钱包  Todo
     const connectWallet = async () => {
         if (!window.keplr) {
-            alert("Please install keplr extension");
             return;
         }
         await window.keplr.enable(chain.chainId);

@@ -12,7 +12,8 @@
             "community": "社区",
             "docs": "文档"
         },
-        "connectWallet": "连接钱包"
+        "connectWallet": "连接钱包",
+        "keplrInstallTip": "需要安装Keplr钱包"
     },
     "home": {
         "balances": "余额",
