@@ -143,13 +143,11 @@ const Header = () => {
         <div className="flex items-center justify-between">
             <div className="flex items-center">
                 <div className="flex items-center mr-4">
-                    <Avatar className="hidden xl:block">
-                        <AvatarImage
-                            src="/src/assets/mint.png"
-                            alt="@terramint"
-                        />
-                        <AvatarFallback>@terramint</AvatarFallback>
-                    </Avatar>
+                    <img
+                        className="w-12 h-12 hidden xl:block"
+                        src="/src/assets/mint.png"
+                        alt="terramint"
+                    />
                     <span className="dark:text-whit xl:font-bold text-lg xl:text-3xl">
                         TERRAMINT
                     </span>
