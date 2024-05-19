@@ -67,8 +67,8 @@ const Home = () => {
     return (
         <div className="relative p-4 xl:p-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
             <Header></Header>
-            <div className="grid grid-cols-12 gap-4 h-full pt-10">
-                <div className="col-span-12 xl:col-span-5 flex items-center justify-center">
+            <div className="grid grid-cols-12 gap-6 h-full pt-10">
+                <div className="col-span-12 xl:col-span-6 flex items-center justify-center">
                     <div className="flex items-center justify-center">
                         <div>
                             <div className="text-3xl md:text-[4rem] leading-tight md:leading-[4.5rem] font-semibold break-words">
@@ -92,13 +92,13 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-12 xl:col-start-6 xl:col-span-3 flex items-center justify-center">
+                <div className="col-span-12 xl:col-start-7 xl:col-span-3 flex items-center justify-center">
                     <video autoPlay loop muted playsInline className="mx-auto">
                         <source src="https://assets-global.website-files.com/611153e7af981472d8da199c/62cfd854bf4cb1f9af5a784d_04Scroll-C-transcode.mp4" />
                         <source src="https://assets-global.website-files.com/611153e7af981472d8da199c/62cfd854bf4cb1f9af5a784d_04Scroll-C-transcode.webm" />
                     </video>
                 </div>
-                <div className="col-span-12 xl:col-start-9 xl:col-span-4 flex flex-col items-center justify-center gap-6">
+                <div className="col-span-12 xl:col-start-10 xl:col-span-3 flex flex-col items-center justify-center gap-6">
                     <div className="w-full">
                         <Card className="w-full">
                             <CardHeader>

@@ -142,7 +142,7 @@ const Header = () => {
         setCurLang(lang.toUpperCase());
     };
     return (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between border border-neutrals-700 rounded-full box-content backdrop-blur-[1.5px] h-12 sm:h-16 px-3 sm:px-5 mx-4 mt-6 hbase:mt-8 mb-2 sm:mx-6 bg-opacity-30 bg-black">
             <div className="flex items-center">
                 <div className="flex items-center mr-4">
                     <img
@@ -184,7 +184,7 @@ const Header = () => {
                 <Button size="sm" onClick={handleClickConnect} className="ml-2">
                     {client.registry
                         ? address.length > 13
-                            ? address.substring(0, 3) +
+                            ? address.substring(0, 6) +
                               "..." +
                               address.substring(address.length - 4)
                             : ""
