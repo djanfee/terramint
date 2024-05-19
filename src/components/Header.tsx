@@ -146,11 +146,11 @@ const Header = () => {
             <div className="flex items-center">
                 <div className="flex items-center mr-4">
                     <img
-                        className="w-12 h-12 hidden xl:block"
+                        className="w-10 h-10 hidden xl:block"
                         src="/assets/mint.png"
                         alt="terramint"
                     />
-                    <span className="dark:text-whit xl:font-bold text-lg xl:text-3xl">
+                    <span className="dark:text-whit xl:font-bold text-lg xl:text-xl">
                         TERRAMINT
                     </span>
                 </div>

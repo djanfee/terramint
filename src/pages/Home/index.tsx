@@ -71,7 +71,7 @@ const Home = () => {
                 <div className="col-span-12 xl:col-span-5 flex items-center justify-center">
                     <div className="flex items-center justify-center">
                         <div>
-                            <div className="text-3xl xl:text-6xl font-bold">
+                            <div className="text-3xl md:text-[4rem] leading-tight md:leading-[4.5rem] font-semibold break-words">
                                 <h1 className="leading-10 xl:leading-[6rem]">
                                     {t("home.slogan")}
                                 </h1>

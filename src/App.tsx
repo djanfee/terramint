@@ -5,7 +5,7 @@ import Home from "@/pages/Home";
 function App() {
     return (
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-            <div className="max-w-[2000px] w-11/12 xl:w-10/12 mx-auto border-2 border-blue-200 rounded-3xl bg-white dark:bg-black">
+            <div className="max-w-[2000px] w-11/12 mx-auto border-2 border-blue-200 rounded-3xl bg-white dark:bg-black">
                 <Home></Home>
             </div>
         </ThemeProvider>
