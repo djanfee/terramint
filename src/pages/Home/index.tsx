@@ -15,7 +15,7 @@ const renderBalance = (allBalances: Coin[], displayDenom: string) => {
     if (idx != -1) {
         return (
             <div
-                className="flex items-center justify-between rounded-md py-4 px-10 mb-6"
+                className="flex items-center justify-between rounded-md py-2 px-10 mb-4"
                 style={{
                     boxShadow: "0 0 24px rgb(59,130,246,.5)",
                 }}
@@ -68,7 +68,7 @@ const Home = () => {
         <div className="relative p-4 xl:px-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
             <Header></Header>
             <div className="grid grid-cols-12 gap-6 h-full pt-10">
-                <div className="col-span-12 xl:col-span-6 flex items-center justify-center">
+                <div className="col-span-12 xl:col-span-6 flex items-center justify-center relative top-[-4rem]">
                     <div className="flex items-center justify-center">
                         <div>
                             <div className="text-3xl md:text-[4rem] leading-tight md:leading-[4.5rem] font-semibold break-words">
@@ -116,7 +116,7 @@ const Home = () => {
                                     {Object.keys(balancesTokens).map(
                                         (key, idx) => (
                                             <div
-                                                className="flex items-center justify-between rounded-md py-4 px-10 mb-6"
+                                                className="flex items-center justify-between rounded-md py-2 px-10 mb-4"
                                                 style={{
                                                     boxShadow:
                                                         "0 0 24px rgb(59,130,246,.5)",
