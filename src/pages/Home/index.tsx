@@ -67,7 +67,7 @@ const Home = () => {
     return (
         <div className="relative p-4 xl:p-10 min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-40px)] pb-52">
             <Header></Header>
-            <div className="grid grid-cols-12 gap-4 mt-10">
+            <div className="grid grid-cols-12 gap-4 mt-10 min-h-[60rem]">
                 <div className="col-span-12 xl:col-span-5 flex items-center justify-center">
                     <div className="flex items-center justify-center">
                         <div>
@@ -92,7 +92,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="min-h-[60rem] col-span-12 xl:col-start-6 xl:col-span-3 flex items-center justify-center">
+                <div className="col-span-12 xl:col-start-6 xl:col-span-3 flex items-center justify-center">
                     <video autoPlay loop muted playsInline className="mx-auto">
                         <source src="https://assets-global.website-files.com/611153e7af981472d8da199c/62cfd854bf4cb1f9af5a784d_04Scroll-C-transcode.mp4" />
                         <source src="https://assets-global.website-files.com/611153e7af981472d8da199c/62cfd854bf4cb1f9af5a784d_04Scroll-C-transcode.webm" />
@@ -102,7 +102,11 @@ const Home = () => {
                     <div className="w-full">
                         <Card className="w-full">
                             <CardHeader>
-                                <CardTitle>{t("home.balances")}</CardTitle>
+                                <CardTitle>
+                                    <div className="flex justify-center">
+                                        <span>{t("home.balances")}</span>
+                                    </div>
+                                </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div>
@@ -151,7 +155,11 @@ const Home = () => {
                         </Card>
                         <Card className="w-full mt-6">
                             <CardHeader>
-                                <CardTitle>{t("home.backedBy")}</CardTitle>
+                                <CardTitle>
+                                    <div className="flex justify-center">
+                                        <span>{t("home.backedBy")}</span>
+                                    </div>
+                                </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div className="flex justify-center gap-4">
